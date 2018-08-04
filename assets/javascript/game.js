@@ -25,8 +25,18 @@ button.addEventListener("click", function() {
         console.log("Youve clicked start");
         random = words[Math.floor(Math.random() * words.length)];
         console.log(random);
+
+        // Places underscores to indicate how many letters are in word
         printUnderscore(random);
         console.log("Underscores");
+
+        //Alert to start guessing
+        alert("Guess letters to guess the word!");
+        console.log("Alert");
+
+        //Keyboard press listener
+        addEventListener("keypress");
+        console.log("Keypress");
 })
 
     
