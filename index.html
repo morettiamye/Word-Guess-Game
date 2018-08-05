@@ -5,20 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Cat Guessing Game!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"/>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     
 </head>
 <body>
+    <div class="main">
+        <div class="startGame">
+        <button class="button" id="startButton"><h1>Start Game</h1></button>
+        </div>
 
-    <button id="startButton">Start Game</button>
+        <div class="randomword" id="word">Guess the word!</div>
+        <div class="wrongGuess" id="wrong">You've incorrectly guessed:</div>
+        <div id="score"></div>
 
-    <div id="word"></div>
-    <div id="wrong"></div>
-    <div id="score"></div>
-
-    <script src="assets/javascript/game.js">
-     window.onload = function() {
+        <script src="assets/javascript/game.js">
+            window.onload = function() {
                 //run js code here
-           }</script>
+            }</script>
+    </div>
 </body>
+
 </html>
