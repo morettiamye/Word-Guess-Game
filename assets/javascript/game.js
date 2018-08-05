@@ -15,6 +15,12 @@ var underscoreArray;
 // Lives available
 var life = 6;
 
+//Score for keeping track of if won
+var score = 0;
+
+//Keeps track of wins
+var wins = 0;
+
 // Function to print _ for each blank letter
 function printUnderscore() {
     var wordString = "";
@@ -63,6 +69,11 @@ function checkGuess(word) {
         if(word === random[index]){
         alert("Good guess!");
         notMatched = false;
+        score++;
+            if(score === random.length) {
+                confirm("You win!");
+                win++;
+            }
 
         // Hopefully replaces _ with letter
         underscoreArray[index] = word;
@@ -102,6 +113,11 @@ document.onkeydown = function(e) {
     }, 500);
 };
 
+function resetGame(){
+    score = 0;
+    
+}
+
 // When clicking start. computer randomly picks word & prints to console log
 button.addEventListener("click", function() {
         console.log("Youve clicked start");
@@ -118,8 +134,6 @@ button.addEventListener("click", function() {
         alert("Guess letters to guess the word!");
         console.log("Alert");
         
-        //Run checkGuess function
-        //checkGuess();
 })
 
     
