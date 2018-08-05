@@ -9,17 +9,29 @@ var button = document.getElementById("startButton");
 // Random word from array
 var random;
 
+// User guess array
+var underscoreArray;
+
 // Lives available
 var life = 6;
 
 // Function to print _ for each blank letter
-function printUnderscore(words) {
-    for (let index = 0; index < random.length; index++) {
-        var underscore = document.createTextNode( " _ " );
-        var div = document.getElementById("word");
-        div.appendChild(underscore);
-        console.log("Function is a go");
+function printUnderscore() {
+    var wordString = "";
+    for (let index = 0; index < underscoreArray.length; index++) {
         
+        wordString = wordString + ( " " + underscoreArray[index]);
+        
+    }
+    document.querySelector("#word").textContent = wordString;
+    console.log("Function is a go");
+}
+
+// Creates array holding underscores
+function createUnderscore() {
+    underscoreArray = new Array(random.length);
+    for(var index = 0; index < underscoreArray.length; index++){
+        underscoreArray[index] = "_";
     }
 }
 
@@ -38,42 +50,57 @@ function gameOver(wompwomp) {
 } 
 
 
+
 // Function for comparing userGuess to letters in string
+var userInput = true;
+
 function checkGuess(word) {
+    var notMatched = true;
     for (let index = 0; index < random.length; index++) {
+        console.log("Checking character " + random [index]);
 
         // Checks if letter exists in string
-        if (userGuess() === random.charAt[index]) {
-            alert("Good guess!")
-           
-            // Hopefully replaces _ with letter
-            var correct = document.createTextNode( userGuess );
-            var div = document.getElementById("word");
-            div.appendChild(correct);
-            console.log("Correct user guess");           
-        } 
-        // Check if there are more guesses available
-        else {
-            gameOver();
-            console.log("Game over man");
+        if(word === random[index]){
+        alert("Good guess!");
+        notMatched = false;
 
-        } 
-        
+        // Hopefully replaces _ with letter
+        underscoreArray[index] = word;
+        console.log("Correct user guess");
+        printUnderscore();
+        }   
+    } 
+     
+     // Check if there are more guesses available
+    if(notMatched) {
+        gameOver();
+        console.log("not matched " + life);
+        printWrong (word);
+
     }
 }
 
-// Function for hearing keypress
-function userGuess(keyboard) {
-    document.onkeypress = function(e) {
-        e = e || window.event;
-        var charCode = (typeof e.which == "number") ? e.which : e.keyCode;
-        if (charCode) {
-            alert("Character typed: " + String.fromCharCode(charCode));
-        }
-    };
+// Print incorrect guesses
+function printWrong(wrongGuess) {
+        var para = document.createElement("p");
+        var wrongLetter = document.createTextNode(wrongGuess);
+        para.appendChild(wrongLetter);
+        document.getElementById("wrong").appendChild(para);
+        console.log("Wrong letter logged");
 }
 
+// Function for hearing keypress
+var timeout = null;
+document.onkeydown = function(e) {
+    console.log("input");
+    clearTimeout(timeout);
 
+    // Make a new timeout set to go off in 800ms
+    timeout = setTimeout(function () {
+        console.log('Input Value:', e.key.toLowerCase());
+        checkGuess(e.key.toLowerCase())
+    }, 500);
+};
 
 // When clicking start. computer randomly picks word & prints to console log
 button.addEventListener("click", function() {
@@ -81,19 +108,18 @@ button.addEventListener("click", function() {
         random = words[Math.floor(Math.random() * words.length)];
         console.log(random);
 
+        createUnderscore();
+
         // Places underscores to indicate how many letters are in word
-        printUnderscore(random);
+        printUnderscore();
         console.log("Underscores");
 
         //Alert to start guessing
         alert("Guess letters to guess the word!");
         console.log("Alert");
-
-        //Event Listener - Keyboard letter guess
-        userGuess();
         
         //Run checkGuess function
-        checkGuess();
+        //checkGuess();
 })
 
     
