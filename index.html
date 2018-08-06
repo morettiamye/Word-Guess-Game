@@ -5,20 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Cat Guessing Game!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- My CSS-->
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"/>
+    <!-- Google Font-->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     
 </head>
 <body>
+
+    <!-- Main Div-->
     <div class="main">
+
+        <!-- Start Button -->
         <div class="startGame">
-        <button class="button" id="startButton"><h1>Start Game</h1></button>
+                <button class="button" id="startButton"><h1>Start Game</h1></button>
         </div>
 
+        <!-- Div that displays the word chosen and underscores -->
         <div class="randomword" id="word">Guess the word!</div>
+        
+        <!-- Div that displays all of the incrroect guesses-->
         <div class="wrongGuess" id="wrong">You've incorrectly guessed:</div>
+        
+        <!-- Div that displays number of guesses left-->
         <div id="score"></div>
-
+        
+        <!-- Linking javascript -->
         <script src="assets/javascript/game.js">
             window.onload = function() {
                 //run js code here

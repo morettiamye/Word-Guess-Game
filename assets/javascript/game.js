@@ -46,11 +46,10 @@ function gameOver(wompwomp) {
     // If > 0, game continues and life is lost
     if (life > 0) {
         life--;
-        alert("Try again!");
-}   
+        alert("Try again!");  
     // Gives game over if life = 0
-    else if (life = 0){
-        gameOver();
+    } else if (life = 0){
+        alert("You lose!");
         console.log("Game over man");      
     }
 } 
@@ -98,6 +97,7 @@ function printWrong(wrongGuess) {
         para.appendChild(wrongLetter);
         document.getElementById("wrong").appendChild(para);
         console.log("Wrong letter logged");
+        
 }
 
 // Function for hearing keypress
